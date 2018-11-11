@@ -1,4 +1,23 @@
 !function(){
+
+  let duration = 50
+  $('.actions').on('click','button',function(e){
+    let $button = $(e.currentTarget)
+    let speed = $button.attr('data-speed')
+    $button.addClass('active').siblings('.active').removeClass('active')
+    switch(speed){
+      case 'slow':
+        duration = 100
+        break
+      case 'normal':
+        duration = 50
+        break
+      case 'fast':
+        duration = 10
+        break
+    }
+  })
+
   let code = `
   /* 先准备小黄人的皮肤 */
 
@@ -232,8 +251,9 @@
   /* 完成 */
   `
 
+  writeCode('',code)
+  
  
-  let duration = 10
   function writeCode(preCode,code,fn){
     let container = document.querySelector('#code')
     let styleTag = document.querySelector('#styleTag')
@@ -250,6 +270,5 @@
       }
     },duration)
   }
-  writeCode('',code)
 
 }.call()
